@@ -1,4 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Seq__SearchForTheRecipe" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1056,819" sap2010:WorkflowViewState.IdRef="Seq__SearchForTheRecipe_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Seq__SearchForTheRecipe" this:Seq__SearchForTheRecipe.in_RecipeToSearch="banana cake" this:Seq__SearchForTheRecipe.in_SiteURL="https://www.taste.com.au/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_RecipeToSearch" Type="InArgument(x:String)" />
+    <x:Property Name="in_SiteURL" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1056,1285</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Seq__SearchForTheRecipe_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -26,6 +35,18 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -52,30 +73,167 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xD;&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="546,403" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xD;&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="568,1220" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt_SearchResultRecipes" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Taste.com.au website" sap:VirtualizedContainerService.HintSize="484,250" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="2fd6cb4f60c8af68c40fbaf77483a2a0" Selector="&lt;html app='chrome.exe' title='*' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Taste.com.au website" sap:VirtualizedContainerService.HintSize="506,52" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="2fd6cb4f60c8af68c40fbaf77483a2a0" Selector="&lt;html app='chrome.exe' title='*' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,103" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="472,1042" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Boolean" Name="SearchResultsExist" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into Input Recipe" sap:VirtualizedContainerService.HintSize="410,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_RecipeToSearch+ &quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2461c2fc-94ea-4ea6-a195-899856d3b5e9" InformativeScreenshot="6b6c899d1d75748ab1a81f476c644e31" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' tag='INPUT' type='text' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:UiElementExists DisplayName="Search Results Label Exist" Exists="[SearchResultsExist]" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+              <ui:UiElementExists.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e7f057d3-f8d5-4b45-9e6a-100773a6fb2e" InformativeScreenshot="e69f2e065a20c9faa8a02f7e2d33b99d" Selector="&lt;webctrl tag='H1' /&gt;" TimeoutMS="5000">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:UiElementExists.Target>
+            </ui:UiElementExists>
+            <If Condition="[SearchResultsExist]" DisplayName="If search results is not found" sap:VirtualizedContainerService.HintSize="410,589" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,229" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - Results Found" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Results found for &quot; + in_RecipeToSearch]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Throw DisplayName="Throw exception not found search results" Exception="[New Exception(&quot;Failed to load Search Results.&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
+    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Application/Browser to Extract Search Results" sap:VirtualizedContainerService.HintSize="506,975" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Extract Data Sequence" sap:VirtualizedContainerService.HintSize="472,758" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message - Data Extraction" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Extracting search results...&quot;]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_SearchResultRecipes]" DisplayName="Extract Recipe Results dt" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe Name' ReferenceName='Column0'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe URL' ReferenceName='Column1'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='figure' idx='1' /&gt;&lt;webctrl tag='figcaption' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="5" ScopeIdentifier="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V3">
+              <uix:NExtractData.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.taste.com.au/search-recipes/?pub%5B0%5D=&amp;cat=&amp;q=banana+cake" DesignTimeRectangle="542, 612, 625, 0" DesignTimeScaleFactor="1.25" FriendlyName="'Banana cake'" FullSelectorArgument="&lt;webctrl tag='OL' /&gt;" Guid="8b04f421-0007-461b-96f3-4c2b23af8d7e" InformativeScreenshot="85f8944303548a49ba8091f2d6b1338f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Search' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+              </uix:NExtractData.Target>
+            </uix:NExtractData>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SearchResultRecipes]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="410,356" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,170" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NGoToUrl DelayAfter="5" DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="334,82" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[CurrentRow(1).ToString]" Version="V3" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+            </ui:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAA0ASURBVGhDvZcLVJRlGoBHQUMUQbwMKJcBhgFmGBhARQW5iApewd22tBTotKWdbdeT5a5dlDqtJysNUpTybma1WWHW2a1Nnba0XUul9mR2WhVKvKIM0kVx8Hv3fb/LP//Q763afc95zvt+7/f/8z3fN//MgOmXiJDAgLDpEeGVj9uiqzc4E+r3jUprPDza5Tk9ZiicHjMMDudleD4ZmdpYn5nkfjwxurp4YFhZVFBPS/fu3UN79wkpHzQoYtuQITFfxsTGtxNYH8JePc7NomvkMr9skPTsaPPcepfNrURF1tWFaiw4VZjFOZiXCfPT7MwaZ71sibPC1YiNjb8QHj6gJiAgwCyX/nlB4vMtg6v+Mzq99XRhFuNiBZn+mcQRyvoesXW4k9njjWWvBr4z54ODe5dKjZ8W8y2RKK4eDRKiE/XJ8V5+JlMnfRLrk/kZfHw8PxMedzkM5a6XWEsCCw3r9wiqdBNG1xn0vO4c6mig0+SQYJesRHkuwFyQKaFrsmD90FRDqZ9Cnz4hd0i1a8ct5gEVX+WmezRBlOKCmqheVoKnfYLIy2An8lxse3YaJBiI6MHTNayNwPlLQb16jZOKV44HYiOqlKwSU6dLciK7RMY5mufy2DuRnyFzJsyyJxuKKEg4PsEG0TFxHKqvtQn65pKaxnF/TESV/nSVjDhZWeehJObjo6Uw1dgj+Bzy75x0QwEFicbFJ8LAQZGQlOzgUE29q20C5xh+M0VKXf+4xdy/4gSX0j0OcixEpaDMQtpFGxF1bjpTuTbj6h/ceCl/991z4NixZs5v75rNe/ROGN2jCAnpO0cq+4I+sIdGOlu5IEqTBInqT1VIoywXFblZ1XwTLmjGTJQl2ZjR4gp6ZBJtKXDmzBlQcfLUKbAmJtNXp+E9CrN58DtS2xd7s+2NfqdIQlRLIX3mdU4aU7IauUQ6z45rfOfTBmxJdjh79pzUB6zP8k3RnNE9ipjYuDapLWJetLlKO0VCJ+4vSHI6aBNdesdkTjRYmKDnm6CT7hc+EGbMmAkHDx6Ezz//HG699Tbeozl13RVe46JUN5l6Dgi2PH1fge80UeoYwjegCflqmuNZMcrJmkty4Py6Orh44BPwnjjOT9OWlGK4uKL/ADO4MobCzJkVsGLFSli+ohZun1nOezRndI/C7x2wzMncmLexDA5MHKadnr+gFM5Jk6g6HU7eXMKljSInJ89wcfqWiYiMggUPPgwtLWfl1b4409IC8/+4AMwRQ/i1Rq9BfwBy+Z79gy2ZL/0KspB7/jxeE/sGT9VfWvCNYmQq89Q8CZfb2+WyIk54GLz9aQescV+EcdPuMlw8KtoCjtR06Ojo4PcwxnimUPWFCxfA7kjj1xq9hvZbEJ4XU+naUsoytpRB5pZp8NffZEtBJ+N5lMLJpan+GnPb2lV8IRVvNXTAnI3fwbCqNhj+6HmeHbesNFycpNLSM6GpqQk8njZOW9t5jhrTXLor64ob0L5GkxcXNrheLGUkTxspf6pEyErpr0eQNGbFSCe01iyR2nTil2H2BiE+9NE2GIYMpRpxzW0wXFx9MGkT9Ly7MrJk9tU0p7+2K4GBgRb++KRvnsrScQMZL5aBC6FcOzuHfT3CwfCkuTDVTXLcXDaeqceG5KdUt2vCRNYiHzROzJlpKEBidLpDomINobkryd95sw3CencPM/XNMpe6NpdCV3LWTcV/PJysKZvEaROpQLkp286+fXsbl6e4e/23KOrRgeIonanrpc89AJYE/28jvRh9SI0wupawJVrh2FspUD4htNI0+DZHdfoLU0FQyjNtIO2FKWzJ70dr0o3ZDmgc4YDmaeOlOsB2fOZJ1BixCYXjtk1+Ej+HV5bYwPtRMiz7w6AaU8KCke60TVPBuWkK02/CuWkyo/7ecS7g8pJzzzwh9QEmLTsPGQs9PlDUb9yF5KlLDIVuhGXzEsG7J4l59yTD609EbTOlLC1qTNs0BYxwbpzMZiwuYo3DUthRpHG4HS7s/5jLf3myE1woRZCcqq9OKzgq68Fiu/pfqEakpljh3RUkn4jyiaxzjw2OvBbXaErdOImlbURhxMmZzGvqU0297aUZfANHcQPqw7vri0uQjkKcR2RGSFRkfU/f94Dzvi/AmlthKGrEHdOs8M2bVvDutjLvbtwE5s49Vmj5W5zH5NwwGVI3oCzmK1G0vASODk1mR7KStF+bul0XIA3FFUrWr2dQ883K2n7XDkia+iQUTqmAwjHj+I+WPdkKBSOtUF6awJbNs8KetVYgWe/ueNa5OwE6d4sxrzGbHBsmslSU9GcSpK5HsHasn8jsSM2dI+BIVrK2gVU7f9Dk9DivMu46p3r0WipI1CeriBfsSaB58H4Yh+8AZqxNKbXFHvv6CcxBwgjVlB3rJvIx9e3rJrDhdSXwWY4d/0hr5gttO3ARnA+3QurD53gmEZ71dZesrk2lnq6/Ex9HHt7zXIpkvR9acCNxOI6TG8AaezyLmvdM1qcKGkmSSEFRTRyzgvrEgrk58MO+vXyt4/gDRkICIWdM17kfX3voRCd/Tdb2Ty7ViXIk6COGUc/Xj2HE4VeHNJqifpdZb187EU9ZyNrXTvCrU9aWMIL38bp9r63mi1FUrj0PDhRwoJTIN874pW3y1QAuH3kM5WJR1B+UBe8H0ShNYC3HO5ab3aaI6fZqISdk+WbkmEheU4wboFzCiOnVpXI5gPr9HWB/6BzYUYSDNUnx3jVQ19XvvyhfDaDz45EoGIWnTYKUo0iaZPlYZAn2l90bWmMKHTmkkiS56JoSIPhm1ihETyDGe098JpcEqFjTDikooiCplIfOaqL6Of9rzuG95+Wr4ONzeqsSlQxB4cEI5Sjo5D0aY/2hYGpuUKkpoFdgGJdbXQJJq8fzTSTzGjeFWQ/16JqilyugveM7vnBz62UY+xT+yqI0iSc/KLKvPqf16BrVG/u0B5rxc0TRfvE7PP1skhWi/4jkNeVOfeYMlvORzGIOsPA/p6PvH+ZOXl0sRYsh6fnxKI/j51VP9PlY9hZ/VMcXp6BNlONpktyPkBvQMwuvpXtUtH2Fzz6XIrkIxvkgknq6cQRuIhI3KPr71w5o4PIUYUUxc5NQTGF7bhzzjcf79fncc6K3Yt9mqSDijX0XYcyTrWBDySREZcWs1W3whu6Zp3j9s3XQ6qbHQxPWYUZp/VjQicwqDqqQ+iZT96DAMGt1oScR5QguKCUp2yQ0R1nfo3eCHgF9HDreCe8d7IDl730PK3Z8jxu74HfiFO0Xv4XFe+pg6/YUlBpEp4zZLGszSlKtGITjQeB9fyAjaE57fFSET46vUlK2OpStG8tsdeOwRrBnlWPrKsxynCjn81+8nb3+5btS7drxr+OfQv7m21n+2jyURTHF+wNQENHGAzlSHulPG4B1fwrZILV9Qe9C/NKCViWWuAqhzOuxfmOS1sY0J8cFm2fC4t11XPBY+ympC7ym3vKPX4Cs9WXiXryv6T38VtHEBmAmdLWbar85Toy5u//pq+g3Kb4KT5gvkLCqiGniPCvEOGElzfN3RKupb10poJ7KYl7fG8Pmv5SJMuH4OJBYOIkKSXc/WRPh/hnnFlUGVUld44hekN2gJBRK3rqySKKf7zrW99T1RRBfO4bLU51ZVwBNf8cPo5Tigm6SDMeeyF53GOM9dz8cI5gPv9z3qNS8cgSGB1nins7zJNQWgYIW1WeSEbmQKTHKgkI+p+g6TqgdA9WvJqNcP5QlsTB2yR2KYyJM9kIZ5Uu7+vIe0fJWX4/lSo9O1wgZHlEZt6KQEWpRAdYrMBM4jsfsu0bM0VjrY6Zaf1/u8zlSyicn6lApHApeLYcwrHkuzelRJvWuL8InxD9KixsRt7xAk9T6ywt/dJ3CgtfTPcSrb+CfyiSmBN19UVxkIdsHpUNoUwKsF5bf9KjUurEIm2Cp4mKIkBCZUGKWZ7FeTpsq5GjzcqwyMX3dUC6kp9NNsv49767ejPd39YFFFT2u/qG9VgSnDiiLWZLrQVFNJO7ZQoh9Nh/l8xnVqheH11CfoDHdox83vYMfSpQjMX96I8HY7w2XdvZiXqRle7CnvDiwUmr8vAjsF2SJWpTdyAVrULxGZhxzSaxja/IQMaehzeexeZtShRwXDQaS5OKiJ/LOXpThk9VBDRZzt+v7wN5IhJbEVimxGJSy1ORz0ZhqqkVWdWy1mCNyVo7A08dvFxIVspIgTdq78ybW8mZPz8LywJ/2vF9v0LvRf0bSBhIlST3Ry0bzDURXj+ZzWPP+mr/gv4EoiMIkLdhxk1a3vNmjdWF5QFVY725hcpn/fdBG+gyLqIx8IKuBxLnwM3kaopcHo2pHkLwPEt/RkyGw45ke7nt/HTD3/ypuFLQZ+rCHlcVXD7zH6R78yPBG2kTU0lz2ytYheMKBnq+2BDa+9lhg/dJ7AqpnFXer+GWkTab/AiM5AnQia9ecAAAAAElFTkSuQmCC" InformativeScreenshot="989577e6a2b223263f8db3afbbe9270f.jpg" Selector="&lt;html app='chrome.exe' url='*' /&gt;" Title="Search" Url="[in_SiteURL+&quot;*&quot;]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>
