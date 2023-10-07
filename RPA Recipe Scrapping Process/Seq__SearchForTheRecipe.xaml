@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Seq__SearchForTheRecipe" this:Seq__SearchForTheRecipe.in_RecipeToSearch="banana cake" this:Seq__SearchForTheRecipe.in_SiteURL="https://www.taste.com.au/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Seq__SearchForTheRecipe" this:Seq__SearchForTheRecipe.in_RecipeToSearch="apple cake" this:Seq__SearchForTheRecipe.in_SiteURL="https://www.taste.com.au/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_RecipeToSearch" Type="InArgument(x:String)" />
     <x:Property Name="in_SiteURL" Type="InArgument(x:String)" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1056,2694</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,2696</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Seq__SearchForTheRecipe_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -48,6 +48,7 @@
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,9 +111,10 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xD;&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="568,2629" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="568,2631" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt_SearchResultRecipes" />
       <Variable x:TypeArguments="x:String" Name="strRecipeIngredients" />
@@ -149,10 +151,10 @@
             </ui:TypeInto>
             <ui:UiElementExists DisplayName="Search Results Label Exist" Exists="[SearchResultsExist]" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
               <ui:UiElementExists.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e7f057d3-f8d5-4b45-9e6a-100773a6fb2e" InformativeScreenshot="e69f2e065a20c9faa8a02f7e2d33b99d" Selector="&lt;webctrl tag='H1' /&gt;" TimeoutMS="5000">
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e7f057d3-f8d5-4b45-9e6a-100773a6fb2e" InformativeScreenshot="e69f2e065a20c9faa8a02f7e2d33b99d" Selector="&lt;webctrl tag='H1' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
@@ -188,13 +190,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Application/Browser to Extract Search Results" sap:VirtualizedContainerService.HintSize="506,1247" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V2">
+    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Application/Browser to Extract Search Results" sap:VirtualizedContainerService.HintSize="506,1249" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Extract Data Sequence" sap:VirtualizedContainerService.HintSize="472,1030" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Extract Data Sequence" sap:VirtualizedContainerService.HintSize="472,1032" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -208,12 +210,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_SearchResultRecipes]" DisplayName="Extract Recipe Results dt" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe Name' ReferenceName='Column0'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe URL' ReferenceName='Column1'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='figure' idx='1' /&gt;&lt;webctrl tag='figcaption' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="1" ScopeIdentifier="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V3">
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_SearchResultRecipes]" DisplayName="Extract Recipe Results dt" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe Name' ReferenceName='Column0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Recipe URL' ReferenceName='Column1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='li' /&gt;&lt;webctrl tag='article' idx='1' /&gt;&lt;webctrl tag='figure' idx='1' /&gt;&lt;webctrl tag='figcaption' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="410,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="1" ScopeIdentifier="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V3">
               <uix:NExtractData.Target>
                 <uix:TargetAnchorable BrowserURL="https://www.taste.com.au/search-recipes/?pub%5B0%5D=&amp;cat=&amp;q=banana+cake" DesignTimeRectangle="542, 612, 625, 0" DesignTimeScaleFactor="1.25" FriendlyName="'Banana cake'" FullSelectorArgument="&lt;webctrl tag='OL' /&gt;" Guid="8b04f421-0007-461b-96f3-4c2b23af8d7e" InformativeScreenshot="85f8944303548a49ba8091f2d6b1338f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Search' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SearchResultRecipes]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="410,628" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SearchResultRecipes]" DisplayName="For Each Row in dt_SearchResultRecipes" sap:VirtualizedContainerService.HintSize="410,628" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
@@ -228,7 +230,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NGoToUrl DelayAfter="5" DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="334,82" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[CurrentRow(1).ToString]" Version="V3" />
+                    <uix:NGoToUrl DelayAfter="5" DisplayName="Go To URL of each Results Recipe" sap:VirtualizedContainerService.HintSize="334,82" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[CurrentRow(1).ToString]" Version="V3" />
                     <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Full Text of Ingredients" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="GetFullText_1">
                       <ui:GetFullText.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35d695df-b067-4472-9c7d-2ef37a0931fa" InformativeScreenshot="b3dc67324b61ab7a8fd698ca16261aee" Selector="&lt;webctrl id='tabIngredients' tag='DIV' /&gt;">
@@ -244,7 +246,7 @@
                         <OutArgument x:TypeArguments="x:String">[strRecipeIngredients]</OutArgument>
                       </ui:GetFullText.Text>
                     </ui:GetFullText>
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[strRecipeIngredients.Replace(Environment.NewLine+Environment.NewLine,&quot;,&quot;)]" />
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[System.Text.RegularExpressions.Regex.Replace(strRecipeIngredients,&quot;^\s+&quot;,&quot;&quot;,System.Text.RegularExpressions.RegexOptions.Multiline).Trim]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
