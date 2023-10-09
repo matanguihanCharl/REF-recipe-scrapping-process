@@ -1,4 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Seq__TakeUserInput" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1056,1253" sap2010:WorkflowViewState.IdRef="Seq__TakeUserInput_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Seq__TakeUserInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_strRecipe" Type="OutArgument(x:String)" />
+    <x:Property Name="out_IngredientChoice" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1056,1037</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Seq__TakeUserInput_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -67,9 +76,8 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Take user input using dialog box&#xD;&#xA;" DisplayName="Seq__TakeUserInput" sap:VirtualizedContainerService.HintSize="559,1188" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Take user input using dialog box&#xA;" DisplayName="Seq__TakeUserInput" sap:VirtualizedContainerService.HintSize="559,972" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="strRecipe" />
       <Variable x:TypeArguments="x:String" Name="strFruitChoice" />
       <Variable x:TypeArguments="x:String" Name="strVegetableChoice" />
       <Variable x:TypeArguments="x:String" Name="strMeatChoice" />
@@ -82,10 +90,10 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog Recipe" sap:VirtualizedContainerService.HintSize="497,292" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please select one from below:" OptionsString="Fruits;Vegetables;Meat" Title="Recipe">
       <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[strRecipe]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_strRecipe]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch Recipe Choice" Expression="[strRecipe]" sap:VirtualizedContainerService.HintSize="497,522" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch Recipe Choice" Expression="[out_strRecipe]" sap:VirtualizedContainerService.HintSize="497,184" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -114,6 +122,14 @@
         </ui:InputDialog.Result>
       </ui:InputDialog>
     </Switch>
-    <ui:LogMessage DisplayName="Log Message Recipe Selection" sap:VirtualizedContainerService.HintSize="497,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Recipe Selected: &quot; + strRecipe + vbCr +&#xD;&#xA;&quot;Ingredient Selected: &quot; + strFruitChoice + strMeatChoice + strVegetableChoice]" />
+    <Assign DisplayName="Assign IngredientChoice" sap:VirtualizedContainerService.HintSize="497,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_IngredientChoice]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[strFruitChoice + strMeatChoice + strVegetableChoice]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message Recipe Selection" sap:VirtualizedContainerService.HintSize="497,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Recipe Selected: &quot; + out_strRecipe + vbCr +&#xD;&#xA;&quot;Ingredient Selected: &quot; + out_IngredientChoice]" />
   </Sequence>
 </Activity>
