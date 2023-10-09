@@ -250,7 +250,7 @@
                         <OutArgument x:TypeArguments="x:String">[strRecipeIngredients]</OutArgument>
                       </ui:GetFullText.Text>
                     </ui:GetFullText>
-                    <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get Visible of Methods" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="GetVisibleText_1">
+                    <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get Visible Text of Methods" sap:VirtualizedContainerService.HintSize="334,107" sap2010:WorkflowViewState.IdRef="GetVisibleText_1">
                       <ui:GetVisibleText.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c62060f7-83d3-48e0-b03f-8cd34eedf883" InformativeScreenshot="9f1cba9dc9a627d97b1e44931129dc8f" Selector="&lt;webctrl id='tabMethodSteps' tag='DIV' /&gt;">
                           <ui:Target.TimeoutMS>
