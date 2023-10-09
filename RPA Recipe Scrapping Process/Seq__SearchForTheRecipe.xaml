@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1056,2968</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,3074</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Seq__SearchForTheRecipe_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,7 +118,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="568,2903" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This will input the user selected recipe in the taste.com.au website search field&#xA;" DisplayName="Seq__SearchForTheRecipe" sap:VirtualizedContainerService.HintSize="568,3009" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt_SearchResultRecipes" />
       <Variable x:TypeArguments="x:String" Name="strRecipeIngredients" />
@@ -194,13 +194,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Application/Browser to Extract Search Results" sap:VirtualizedContainerService.HintSize="506,1521" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V2">
+    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Application/Browser to Extract Search Results" sap:VirtualizedContainerService.HintSize="506,1627" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="ae2e5282-a1e9-45ca-af33-becd67b3584c" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Extract Data Sequence" sap:VirtualizedContainerService.HintSize="472,1304" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Extract Data Sequence" sap:VirtualizedContainerService.HintSize="472,1410" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -219,13 +219,13 @@
                 <uix:TargetAnchorable BrowserURL="https://www.taste.com.au/search-recipes/?pub%5B0%5D=&amp;cat=&amp;q=banana+cake" DesignTimeRectangle="542, 612, 625, 0" DesignTimeScaleFactor="1.25" FriendlyName="'Banana cake'" FullSelectorArgument="&lt;webctrl tag='OL' /&gt;" Guid="8b04f421-0007-461b-96f3-4c2b23af8d7e" InformativeScreenshot="85f8944303548a49ba8091f2d6b1338f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Search' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SearchResultRecipes]" DisplayName="For Each Row in dt_SearchResultRecipes" sap:VirtualizedContainerService.HintSize="410,900" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SearchResultRecipes]" DisplayName="For Each Row in dt_SearchResultRecipes" sap:VirtualizedContainerService.HintSize="410,1006" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,714" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,820" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="strRecipeMethods" />
                     </Sequence.Variables>
@@ -265,8 +265,8 @@
                         <OutArgument x:TypeArguments="x:String">[strRecipeMethods]</OutArgument>
                       </ui:GetVisibleText.Text>
                     </ui:GetVisibleText>
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[Split(System.Text.RegularExpressions.Regex.Replace(strRecipeIngredients,&quot;^\s+&quot;,&quot;&quot;,System.Text.RegularExpressions.RegexOptions.Multiline).Trim,&quot;Select all ingredients&quot;)(0)]" />
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[Split(System.Text.RegularExpressions.Regex.Replace(strRecipeMethods,&quot;^\s+&quot;,&quot;&quot;,System.Text.RegularExpressions.RegexOptions.Multiline).Trim,&quot;Did you make this?&quot;)(0)]" />
+                    <ui:LogMessage DisplayName="Log Message - Save scraped data" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Saving ingredients and methods for: &quot; + CurrentRow(0).ToString]" />
+                    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File Ingredients and Methods" FileName="[&quot;Data\Output\&quot;+CurrentRow(0).ToString]" sap:VirtualizedContainerService.HintSize="334,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Split(System.Text.RegularExpressions.Regex.Replace(strRecipeIngredients,&quot;^\s+&quot;,&quot;&quot;,System.Text.RegularExpressions.RegexOptions.Multiline).Trim,&quot;Select all ingredients&quot;)(0) + vbLf + vbLf +&#xD;&#xA;&quot;Methods&quot;+vblf+&#xD;&#xA;Split(System.Text.RegularExpressions.Regex.Replace(strRecipeMethods,&quot;^\s+&quot;,&quot;&quot;,System.Text.RegularExpressions.RegexOptions.Multiline).Trim,&quot;Did you make this?&quot;)(0)]" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
