@@ -75,6 +75,9 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Removing_New_line" sap:VirtualizedContainerService.HintSize="496,319" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -254,6 +257,6 @@
         Add To shopping list"]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[System.Text.RegularExpressions.Regex.Replace(str,“^\s+”,“”,System.Text.RegularExpressions.RegexOptions.Multiline).Trim]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[Split(System.Text.RegularExpressions.Regex.Replace(str,“^\s+”,“”,System.Text.RegularExpressions.RegexOptions.Multiline).Trim,&quot;Select all ingredients&quot;)(0)]" />
   </Sequence>
 </Activity>
