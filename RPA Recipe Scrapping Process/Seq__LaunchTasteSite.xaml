@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1056,931</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,819</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Seq__LaunchSite_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,14 +79,13 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This sequence will open the taste.com.au website&#xA;" DisplayName="Seq__LaunchSite" sap:VirtualizedContainerService.HintSize="571,866" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This sequence will open the taste.com.au website&#xA;" DisplayName="Seq__LaunchSite" sap:VirtualizedContainerService.HintSize="571,741" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="509,85" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;test&quot;]" />
     <ui:LogMessage DisplayName="Launch Site Log Message" sap:VirtualizedContainerService.HintSize="509,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Launching taste.com.au website...&quot;]" />
     <ui:RetryScope DisplayName="Retry Scope - If there is a network error " sap:VirtualizedContainerService.HintSize="509,407" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="2" RetryInterval="00:00:10">
       <ui:RetryScope.ActivityBody>
